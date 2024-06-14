@@ -1,0 +1,1 @@
+# Azure Subscriptions Admin Role

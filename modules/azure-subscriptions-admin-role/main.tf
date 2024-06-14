@@ -1,9 +1,9 @@
-resource "polaris_custom_role" "aws_accounts_admin_role" {
-  name        = "AWS Admin Role - ${var.role_name_suffix}"
-  description = "Admin role for a set of AWS accounts."
+resource "polaris_custom_role" "azure_subscriptions_admin_role" {
+  name        = "Azure Admin Role - ${var.role_name_suffix}"
+  description = "Admin role for a set of Azure subscriptions."
 
   permission {
-    operation = "ADD_AWS_CLOUD_ACCOUNT"
+    operation = "ADD_AZURE_CLOUD_ACCOUNT"
     hierarchy {
       object_ids     = ["GlobalResource"]
       snappable_type = "AllSubHierarchyType"
@@ -11,7 +11,7 @@ resource "polaris_custom_role" "aws_accounts_admin_role" {
   }
 
   permission {
-    operation = "DELETE_AWS_CLOUD_ACCOUNT"
+    operation = "DELETE_AZURE_CLOUD_ACCOUNT"
     hierarchy {
       object_ids     = ["GlobalResource"]
       snappable_type = "AllSubHierarchyType"
@@ -19,7 +19,7 @@ resource "polaris_custom_role" "aws_accounts_admin_role" {
   }
 
   permission {
-    operation = "EDIT_AWS_CLOUD_ACCOUNT"
+    operation = "EDIT_AZURE_CLOUD_ACCOUNT"
     hierarchy {
       object_ids     = ["GlobalResource"]
       snappable_type = "AllSubHierarchyType"
@@ -27,7 +27,7 @@ resource "polaris_custom_role" "aws_accounts_admin_role" {
   }
 
   permission {
-    operation = "VIEW_AWS_CLOUD_ACCOUNT"
+    operation = "VIEW_AZURE_CLOUD_ACCOUNT"
     hierarchy {
       object_ids     = ["GlobalResource"]
       snappable_type = "AllSubHierarchyType"
@@ -38,227 +38,119 @@ resource "polaris_custom_role" "aws_accounts_admin_role" {
     operation = "PROVISION_ON_INFRASTRUCTURE"
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEc2Instance"
+      snappable_type = "AzureNativeVirtualMachine"
     }
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEbsVolume"
+      snappable_type = "AzureNativeManagedDisk"
     }
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeRdsInstance"
+      snappable_type = "AzureSqlDatabaseDb"
     }
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
+      snappable_type = "AzureSqlManagedInstanceDb"
     }
   }
 
-  permission{
+  permission {
     operation = "VIEW_INVENTORY"
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEc2Instance"
+      snappable_type = "AzureNativeVirtualMachine"
     }
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEbsVolume"
+      snappable_type = "AzureNativeManagedDisk"
     }
-    hierarchy{
+    hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeRdsInstance"
+      snappable_type = "AzureSqlDatabaseDb"
     }
-    hierarchy{
+    hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
+      snappable_type = "AzureSqlManagedInstanceDb"
     }
   }
 
-  permission{
+  permission {
     operation = "REFRESH_DATA_SOURCE"
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEc2Instance"
+      snappable_type = "AzureNativeVirtualMachine"
     }
-    hierarchy{
+    hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEbsVolume"
+      snappable_type = "AzureNativeManagedDisk"
     }
-    hierarchy{
+    hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeRdsInstance"
+      snappable_type = "AzureSqlDatabaseDb"
     }
-    hierarchy{
+    hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
+      snappable_type = "AzureSqlManagedInstanceDb"
     }
   }
 
-  permission{
+  permission {
     operation = "MANAGE_PROTECTION"
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEc2Instance"
+      snappable_type = "AzureNativeVirtualMachine"
     }
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEbsVolume"
+      snappable_type = "AzureNativeManagedDisk"
     }
-    hierarchy{
+    hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeRdsInstance"
+      snappable_type = "AzureSqlDatabaseDb"
     }
-    hierarchy{
+    hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
+      snappable_type = "AzureSqlManagedInstanceDb"
     }
   }
 
-  permission{
+  permission {
     operation = "TAKE_ON_DEMAND_SNAPSHOT"
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEc2Instance"
+      snappable_type = "AzureNativeVirtualMachine"
     }
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEbsVolume"
+      snappable_type = "AzureNativeManagedDisk"
     }
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeRdsInstance"
+      snappable_type = "AzureSqlDatabaseDb"
     }
-    hierarchy{
+    hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
+      snappable_type = "AzureSqlManagedInstanceDb"
     }
   }
 
-  permission{
+  permission {
     operation = "DELETE_SNAPSHOT"
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEc2Instance"
+      snappable_type = "AzureNativeVirtualMachine"
     }
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEbsVolume"
+      snappable_type = "AzureNativeManagedDisk"
     }
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeRdsInstance"
+      snappable_type = "AzureSqlDatabaseDb"
     }
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
-    }
-  }
-
-  permission{
-    operation = "EXPORT_SNAPSHOTS"
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEc2Instance"
-    }
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEbsVolume"
-    }
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeRdsInstance"
-    }
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
-    }
-  }
-
-  permission {
-    operation = "DOWNLOAD"
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEc2Instance"
-    }
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEbsVolume"
-    }
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeRdsInstance"
-    }
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
-    }
-  }
-
-  permission {
-    operation = "RESTORE_TO_ORIGIN"
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEc2Instance"
-    }
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEbsVolume"
-    }
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeRdsInstance"
-    }
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
-    }
-  }
-
-  permission {
-    operation = "DOWNLOAD_SNAPSHOT_FROM_REPLICATION_TARGET"
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEc2Instance"
-    }
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEbsVolume"
-    }
-    hierarchy{
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeRdsInstance"
-    }
-    hierarchy{
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
-    }
-  }
-
-  permission {
-    operation = "MANAGE_DATA_SOURCE"
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEc2Instance"
-    }
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeEbsVolume"
-    }
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AwsNativeRdsInstance"
-    }
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
-    }
-  }
-
-  permission {
-    operation = "DOWNLOAD_FROM_ARCHIVAL_LOCATION"
-    hierarchy {
-      object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
+      snappable_type = "AzureSqlManagedInstanceDb"
     }
   }
 
@@ -266,15 +158,111 @@ resource "polaris_custom_role" "aws_accounts_admin_role" {
     operation = "MOUNT"
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
-      }
+      snappable_type = "AzureNativeVirtualMachine"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureNativeManagedDisk"
+    }
   }
 
   permission {
-    operation = "EXPORT_FILES"
+    operation = "EXPORT_SNAPSHOTS"
     hierarchy {
       object_ids     = var.rsc_cloud_account_ids
-      snappable_type = "AWS_NATIVE_S3_BUCKET"
+      snappable_type = "AzureNativeVirtualMachine"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureNativeManagedDisk"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureSqlDatabaseDb"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureSqlManagedInstanceDb"
+    }
+  }
+
+  permission {
+    operation = "DOWNLOAD"
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureNativeVirtualMachine"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureNativeManagedDisk"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureSqlDatabaseDb"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureSqlManagedInstanceDb"
+    }
+  }
+
+  permission {
+    operation = "RESTORE_TO_ORIGIN"
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureNativeVirtualMachine"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureNativeManagedDisk"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureSqlDatabaseDb"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureSqlManagedInstanceDb"
+    }
+  }
+
+  permission {
+    operation = "DOWNLOAD_SNAPSHOT_FROM_REPLICATION_TARGET"
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureNativeVirtualMachine"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureNativeManagedDisk"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureSqlDatabaseDb"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureSqlManagedInstanceDb"
+    }
+  }
+
+  permission {
+    operation = "MANAGE_DATA_SOURCE"
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureNativeVirtualMachine"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureNativeManagedDisk"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureSqlDatabaseDb"
+    }
+    hierarchy {
+      object_ids     = var.rsc_cloud_account_ids
+      snappable_type = "AzureSqlManagedInstanceDb"
     }
   }
 
